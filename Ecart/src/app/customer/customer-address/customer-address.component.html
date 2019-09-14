@@ -1,0 +1,28 @@
+<div class="page-top-offset"></div>
+<div class="row">
+    <div class="container-fluid">
+        <div class="cards">
+            <div *ngFor="let address of addresses ">
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <a [routerLink]=""><div class="glyphicon glyphicon-remove"></div></a>
+                        </div>
+                        <div class="panel-body">
+                            <div *ngFor="let key of address|address">
+                                {{key}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <a [routerLink]=""> 
+        <div class="btn-circular">
+               <div class="glyphicon glyphicon-plus"></div>
+            </div>
+        </a>
+    </div>
+</div>

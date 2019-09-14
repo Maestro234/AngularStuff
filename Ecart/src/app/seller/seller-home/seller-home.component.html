@@ -1,0 +1,142 @@
+<div class="row">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a routerLink="/sellerHome" class="navbar-brand">EKart</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="my-nav">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <li>
+                                <a [routerLink]="" (click)="chosenOption('viewAllProducts')">View My Products</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="" (click)="chosenOption('addNewProduct')">Add New Product</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a [routerLink]="" (click)="chosenOption('viewAllOrders')">Orders</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="" (click)="chosenOption('sellerWishlist')">Wishlisted Products</a>
+                    </li>s
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a [routerLink]="">Welcome {{loggedInSeller.name}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <li>
+                                <a [routerLink]="" (click)="chosenOption('viewProfile')">My Profile
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="" (click)="chosenOption('changePassword')">Change Password
+
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="" (click)="logout()">Logout
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+</div>
+<!-- <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" aria-describedby="addon1">
+            <span class="input-group-addon" id="addon1">Search</span>
+        </div>
+
+    </div>
+</div> -->
+
+<!-- <div *ngFor="let product of productList">
+    <div class="col-md-4">
+        <div class="hoverable">
+            <div class="panel-heading">
+                {{product.brand+" - "+product.name}}
+            </div>
+            <div class="panel-body">
+                <div class="image-box">
+                    <img [src]="'assets/resources/'+ product.productId+'.jpg'" class="img-responsive center-block" alt="Image Not Found">
+                </div>
+            </div>
+            <div class="panel-footer">
+                Rs. is used instead of currency pipe due to support issue
+                <span class="success-message">
+                    <p>
+                        <strong>Rs.{{product.price * (1-product.discount/100)|number:'1.2-2'}}</strong>
+                        <span class="error-message">
+                            <del>Rs.{{product.price |number:'1.2-2'}}</del>
+                        </span>
+                    </p>
+                    <strong>{{product.discount/100 | percent}} OFF</strong>
+                    <br/>
+                    <br/>
+                    <strong>Quantity in Customers Wishlist: {{product.quantity}}</strong>
+                </span>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div *ngIf="isViewProductSelected">
+    <div class="row">
+        <div class="col-md-8">
+            To Remove:{{isViewProductSelected}}
+            <!--To be used later for displaying the  selected filter-->
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+
+    <div class="col-md-2 ">
+        <!-- <div *ngIf="isViewProductSelected">
+            <div class="sidebar-nav-fixed affix">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Option 1</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Option 2</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-info">Option 3</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-success">Option 4</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Choose any one bg color</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="col-md-8">
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

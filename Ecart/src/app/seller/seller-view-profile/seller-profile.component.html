@@ -1,0 +1,100 @@
+<div class="col-md-8 col-md-offset-2 table-border">
+    <div class="text-center">
+        <h1>My Details</h1>
+    </div>
+    <table class="table table-condensed">
+        <tr>
+            <th>Name:</th>
+            <td>
+                <div *ngIf="updating!='updateName'">
+                    {{seller.name}} &nbsp;
+                    
+                        <a [routerLink]="" (click)="linkClick('updateName')" class="">
+                            <span data-toggle="tooltip" title="Update Name" class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    
+                </div>
+
+                <div *ngIf="updating=='updateName'">
+                    <div class="input-group">
+                        <input type="text" class="form-control" [(ngModel)]="sellerToUpdate.name" placeholder="Enter name..">
+                        <span class="input-group-btn">
+                            <button class="btn custom-button" (click)="updateDetail('update')">
+                                <span data-toggle="tooltip" title="Update" class="glyphicon  glyphicon-floppy-disk glyphicon-success"></span>
+                            </button>
+                            <button class="btn custom-button" (click)="updateDetail('cancel')">
+                                <span data-toggle="tooltip" title="Cancel" class="glyphicon glyphicon-remove-circle glyphicon-cancel"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Email Id:</th>
+            <td>
+                {{seller.emailId}}
+            </td>
+
+        </tr>
+        <tr>
+            <th>Phone Number:</th>
+            <td>
+                <div *ngIf="updating!='updatePhoneNumber'">
+                        {{seller.phoneNumber}} &nbsp;
+                        
+                            <a [routerLink]="" (click)="linkClick('updatePhoneNumber')" class="">
+                                <span data-toggle="tooltip" title="Update Phone Number" class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        
+                    </div>
+    
+                    <div *ngIf="updating=='updatePhoneNumber'">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" [(ngModel)]="sellerToUpdate.phoneNumber">
+                            <span class="input-group-btn">
+                                <button class="btn custom-button" (click)="updateDetail('update')">
+                                    <span data-toggle="tooltip" title="Update" class="glyphicon  glyphicon-floppy-disk glyphicon-success"></span>
+                                </button>
+                                <button class="btn custom-button" (click)="updateDetail('cancel')">
+                                    <span data-toggle="tooltip" title="Cancel" class="glyphicon glyphicon-remove-circle glyphicon-cancel"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td>
+                <div *ngIf="updating!='updateAddress'">
+                        {{seller.address}} &nbsp;
+                        
+                            <a [routerLink]="" (click)="linkClick('updateAddress')" class="">
+                                <span data-toggle="tooltip" title="Update Address" class="glyphicon glyphicon-edit"></span>
+                            </a>
+                        
+                    </div>
+    
+                    <div *ngIf="updating=='updateAddress'">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" [(ngModel)]="sellerToUpdate.address">
+                            <span class="input-group-btn">
+                                <button class="btn custom-button" (click)="updateDetail('update')">
+                                    <span data-toggle="tooltip" title="Update" class="glyphicon  glyphicon-floppy-disk glyphicon-success"></span>
+                                </button>
+                                <button class="btn custom-button" (click)="updateDetail('cancel')">
+                                    <span data-toggle="tooltip" title="Cancel" class="glyphicon glyphicon-remove-circle glyphicon-cancel"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+            </td>
+        </tr>
+
+    </table>
+    <div *ngIf="errorMessage!='' && successMessage!=''">
+        <div class="error-message text-center">{{errorMessage}}</div>
+        <div class="success-message text-center">{{successMessage}}</div>
+    </div>
+</div>

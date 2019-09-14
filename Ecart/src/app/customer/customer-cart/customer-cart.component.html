@@ -1,0 +1,52 @@
+<h1>Customer Cart</h1>
+<div *ngIf="successMessage!=null && successMessage!=''" class="success-message">
+  <strong>{{successMessage}}</strong>
+</div>
+<div *ngIf="errorMessage!=null && errorMessage!=''" class="error-message">
+  <strong>{{errorMessage}}</strong>
+</div>
+<div *ngIf="!viewCartProductDetails">
+  <div class="row">
+    <div *ngFor="let cart of cartList">
+
+      <div class="panel col-md-10 col-md-offset-1">
+        <div class="col-md-3">
+          <img [src]="'assets/resources/'+ cart.product.productId+'.jpg'" class="img-responsive center-block" alt="Not Found">
+        </div>
+        <div class="col-md-6">
+          <h3>{{cart.product.name}}</h3>
+          <strong>BRAND:</strong> {{cart.product.brand}}
+          <br/>
+          <strong>PRICE:</strong> {{cart.product.price}}
+          <br/>
+          <strong>DISCOUNT:</strong> {{cart.product.discount}}
+          <br/>
+          <strong>Quantity:</strong> {{cart.quantity}}
+          <br/>
+        </div>
+        <div>
+          <br/>
+          <br/>
+          <button class=" col-md-2 btn btn-primary" (click)="setSelectedCart(cart)">Modify</button>
+
+          <br/>
+          <br/>
+
+          <button class=" col-md-2 btn btn-primary" (click)="deleteProductFromCart(cart)">Remove</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="viewCartProductDetails">
+  <div class="row">
+    <div class="col-md-2">
+      <a [routerLink]="" (click)="viewCartProductDetails=false" class="btn btn-default">
+        <div class="glyphicon glyphicon-arrow-left"></div>
+      </a>
+    </div>
+  </div>
+  <br>
+  <view-cart-product-detail [selectedCartProduct]="selectedCartProduct"></view-cart-product-detail>
+</div>

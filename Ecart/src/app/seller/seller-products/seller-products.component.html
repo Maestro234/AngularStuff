@@ -1,0 +1,98 @@
+<div>
+  <div class="text-center table-responsive table-border" *ngIf="displayProducts">
+  <h1>My Products</h1>
+
+    <table class="table text-center">      
+      <thead >
+        <tr>
+          <th style="text-align: center">Product Id</th>
+          <th style="text-align: center">Product Name</th>
+          <th style="text-align: center">Category</th>
+          <th style="text-align: center">Brand</th>
+        </tr>
+      </thead>
+      <tbody>                
+        <tr *ngFor="let product of productList">
+          <td>{{product.productId}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.category}}</td>
+          <td>{{product.brand}}</td>
+          <td> 
+            <span data-toggle="tooltip" (click)='viewProductDetails(product)' title="Modify Product Details" class="btn glyphicon glyphicon-edit glyphicon-success"></span>
+          </td>
+          <td >
+            <span data-toggle="tooltip" (click)='removeProduct(product)' title="Remove Product" class="btn glyphicon glyphicon-trash glyphicon-cancel"></span>
+          </td>
+        </tr>
+      </tbody>         
+    </table>
+    <div *ngIf="(errorMessage!='' || successMessage!='')">
+      <div class="error-message text-center">{{errorMessage}}</div>
+      <div class="success-message text-center">{{successMessage}}</div>
+    </div>
+  </div>
+  <div  *ngIf="!(displayProducts)">    
+      <div class="table-border table-responsive col-md-8 col-md-offset-2 text-center ">
+          <h1>Product Details</h1>
+          <form (ngSubmit)="modifyProductDetails()">
+            <table class="table ">
+                <tr>
+                  <th>Product ID:</th>
+                  <td>      
+                    <input readonly type="number" class="form-control" [(ngModel)]="productToBeModified.productId" name="productID"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Name:</th>
+                  <td>      
+                    <input type="text" required class="form-control" [(ngModel)]="productToBeModified.name" name="productName"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Description:</th>
+                  <td>      
+                    <textarea required cols="40" rows="3" class="form-control" [(ngModel)]="productToBeModified.description" name="description"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Category:</th>
+                  <td>      
+                    <select class="form-control" [(ngModel)]="productToBeModified.category" name="category">
+                      <option *ngFor="let category of productCategoryList" value = "{{category}}">{{category}}</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Brand:</th>
+                  <td>      
+                    <input type="text" required class="form-control" [(ngModel)]="productToBeModified.brand" name="productBrand"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Price:</th>
+                  <td>      
+                    <input type="number" required class="form-control" min="0" [(ngModel)]="productToBeModified.price" name="productPrice"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Quantity:</th>
+                  <td>      
+                    <input type="number" required class="form-control" min="1" [(ngModel)]="productToBeModified.quantity" name="productQuantity"/>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Product Discount:</th>
+                  <td>      
+                    <input type="number" required class="form-control" min="0" [(ngModel)]="productToBeModified.discount" name="productDiscount"/>
+                  </td>
+                </tr>
+            </table>
+            <button type="submit" (click)="flag='1'" class="btn btn-success">Update Details</button>
+            <button type="button" (click)="displayProducts='True'" class="btn btn-success">Cancel</button>
+          </form>
+        </div>
+  </div>
+  
+</div>
+
+  

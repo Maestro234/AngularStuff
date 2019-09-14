@@ -1,0 +1,120 @@
+<h2>
+  Your Wishlist
+</h2>
+
+<div *ngIf="successMessage!=''" class="success-message">
+  <strong>{{successMessage}}</strong>
+</div>
+<div *ngIf="errorMessage!=''" class="error-message">
+  <strong>{{errorMessage}}</strong>
+</div>
+
+<div *ngIf=" wishList.length>0;else empty">
+  <div *ngIf="!viewWishlistProductDetails">
+    <div class="row">
+      <div class="container-fluid">
+        <div *ngFor="let wishlist of wishList">
+
+          <div class="panel hoverable col-md-10 col-md-offset-1">
+            <div class="col-md-3">
+              <a [routerLink]="" (click)="setSelectedProduct(wishlist.product)">
+                <img [src]="'assets/resources/'+ wishlist.product.productId+'.jpg'" class="img-responsive center-block" alt="Not Found">
+              </a>
+            </div>
+            <div class="col-md-6">
+              <h3>{{wishlist.product.name}}</h3>
+              <strong>BRAND:</strong> {{wishlist.product.brand}}
+              <br/>
+              <strong>PRICE:</strong> Rs. {{wishlist.product.price * (1-wishlist.product.discount/100)|number:'1.2-2'}}
+              <br/>
+              <strong>DISCOUNT:</strong> {{wishlist.product.discount/100 | percent}}
+              <br>
+              <strong>DATE ADDED:</strong> {{wishlist.dateAdded | dateformat}}
+            </div>
+            <div>
+              <br/>
+              <br/>
+              <button class=" col-md-2 btn btn-danger hoverable" (click)="deleteProductFromWishlist(wishlist)">Remove</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #empty> <h4>Your Wishlist is Empty, Please Add Products to Wishlist</h4></ng-template>
+
+
+<div class="container-fluid">
+  <div *ngIf="viewWishlistProductDetails">
+    <a [routerLink]="" (click)="viewWishlistProductDetails = !viewWishlistProductDetails" class="btn btn-default">
+      <div class="glyphicon glyphicon-arrow-left"></div>
+    </a>
+    <br>
+    <div class="col-md-4">
+      <img [src]="'assets/resources/'+ selectedProduct.productId+'.jpg'" class="img-responsive center-block" alt="Image Not Found">
+    </div>
+    <div class="col-md-8 div-left-border">
+      <tr>
+        <th>
+          <span class="text-muted">
+            <h4>{{selectedProduct.brand+ " - " +selectedProduct.name}}</h4>
+          </span>
+        </th>
+      </tr>
+      <table class="table table-borderless text-black text-right">
+
+        <tr>
+          <th>
+            <span class="text-muted">
+              <h4>Category</h4>
+            </span>
+          </th>
+          <td>
+            <h4>{{selectedProduct.category}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-muted">Features</span>
+          </th>
+          <td>
+            <dl class="text-justify">
+              <div *ngFor="let item of selectedProduct.description|productDescription">
+                <dd>{{item}}</dd>
+              </div>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-muted">Price</span>
+          </th>
+          <td>
+            <span class="success-message">
+
+              <strong>Rs.{{selectedProduct.price * (1-selectedProduct.discount/100)|number:'1.2-2'}}</strong>
+
+              <div class="clearfix"></div>
+              <span class="error-message">
+                <del>Rs.{{selectedProduct.price |number:'1.2-2'}}</del>
+              </span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-muted">Discount</span>
+          </th>
+          <td>
+            <strong>
+              <span class="success-message">{{selectedProduct.discount/100 | percent}}</span>
+            </strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

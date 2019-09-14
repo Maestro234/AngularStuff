@@ -1,0 +1,99 @@
+
+<div *ngIf="!selectedProduct"> 
+  <div *ngFor="let product of productList">
+    <div class="row hoverable">
+      <div class="container-fluid">
+        <div class="col-md-4">
+          <a [routerLink]="" (click)="selectThatProduct(product)">
+            <div class="image-box">
+              <img  [src]="'assets/resources/'+ product.productId+'.jpg'" class="img-responsive center-block"
+                alt="Image Not Found">
+            </div>
+          </a>
+        </div>
+        <div class="col-md-8 div-left-border">
+          <div class="text-left text-black">
+            <h4>
+              <ins>{{product.brand+" - "+product.name}}</ins>
+            </h4>
+          </div>
+          <table class="table table-borderless text-black text-right">
+            <tr>
+              <th>
+                <span class="text-muted">Category</span>
+              </th>
+              <td>
+                {{product.category}}
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <strong class="text-muted">Price</strong>
+              </th>
+              <td class="success-message">
+                <strong>Rs. {{product.price}}</strong>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <strong class="text-muted">Quantity in Customers Wishlist</strong>
+              </th>
+              <td>
+                <strong class="cart badge">{{product.quantity}}</strong>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+    <br>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div *ngIf="selectedProduct">
+    <a [routerLink]="" (click)="selectedProduct = !selectedProduct" class="btn btn-danger">
+        <div class="glyphicon glyphicon-arrow-left"></div>
+    </a>
+    <br><br>
+    <div class="col-md-4">
+      <img [src]="'assets/resources/'+ selected.productId+'.jpg'" class="img-responsive center-block" alt="Image Not Found">
+    </div>
+    <div class="col-md-8 div-left-border">
+      <table class="table table-borderless text-black text-right">
+        <tr>
+          <th>
+            <span class="text-muted">
+              <h4>{{selected.brand+ " - " +selected.name}}</h4>
+            </span>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-muted">
+              <h4>Category</h4>
+            </span>
+          </th>
+          <td>
+            <h4>{{selected.category}}</h4>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-muted">
+              <h4>Quantity in Customers Wishlist</h4>
+            </span>
+          </th>
+          <td>
+            <h4 class="badge">{{selected.quantity}}</h4>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,51 @@
+<div class="row">
+    
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+            <div class="navbar-header">
+                <a routerLink="/" class="navbar-brand">EKart</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="my-nav">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a [routerLink]="" class="btn btn-simple" (click)="userActivity('login')">Login</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="" class="btn btn-simple" (click)="userActivity('register')">Register</a>
+                    </li>
+                    <li>
+                        <a routerLink="/seller" class="btn btn-simple">Sell your Products</a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+        </nav>
+    
+</div>
+<div *ngIf="activity=='login'">
+    <div class="row">
+        <div class="container-fluid">
+            <login></login>
+
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="activity=='register'">
+    <div class="row">
+        <div class="container-fluid">
+            <registration></registration>
+
+
+        </div>
+    </div>
+</div>

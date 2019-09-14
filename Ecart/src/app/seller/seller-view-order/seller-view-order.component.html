@@ -1,0 +1,59 @@
+<div>
+    <div class="text-center table-responsive table-border" *ngIf="displayOrders">
+
+        <table class="table table-responsive text-center">
+
+
+            <thead>
+                <tr>
+                    <th style="text-align: center">Order Number</th>
+                    <th style="text-align: center">Customer Email Id</th>
+                    <th style="text-align: center">Date of order</th>
+                    <th style="text-align: center">Address Id</th>
+                    <th style="text-align: center">Product Id</th>
+                    <th style="text-align: center">Quantity</th>
+                    <th style="text-align: center">Total Price</th>
+                    <th style="text-align: center"> Status</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let order of orderData">
+                    <td>{{order.orderNumber}}</td>
+                    <td>{{order.customerEmailId}}</td>
+                    <td>{{order.dateOfOrder | dateConverter | date:'medium'}}</td>
+                    <td>{{order.addressId}}</td>
+                    <td>{{order.productId}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.totalPrice | currency:'INR':true}}</td>
+                    <td>{{order.orderStatus}}</td>
+                    <td>
+                        <span data-toggle="tooltip" (click)='modifyVariablesOnClick(order)' style="color: green" title="Modify Order Status" class="btn glyphicon glyphicon-edit"></span>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <div *ngIf="errorMessage!='' && successMessage!=''">
+            <div class="error-message text-center">{{errorMessage}}</div>
+            <div class="success-message text-center">{{successMessage}}</div>
+        </div>
+    </div>
+
+    <div *ngIf="!(displayOrders)">
+        <div class="table-border table-responsive col-md-8 col-md-offset-2 text-center ">
+            <form (ngSubmit)="UpdateStatus(newOrder)">
+                <select class="form-control" name="status" [(ngModel)]="newOrder.orderStatus">
+                    <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+                </select>
+                <br>
+
+                <button type="submit" class="btn btn-success">Update Details</button>
+                <button type="button" (click)="displayOrders='true'" class="btn btn-success">Cancel</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>

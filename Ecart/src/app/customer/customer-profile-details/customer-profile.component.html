@@ -1,0 +1,79 @@
+<div class="page-top-offset"></div>
+<div class="container-fluid">
+    <div class="col-md-offset-3 col-md-6">
+    <div class="seller-form-bg">
+        <h3 class="title">Profile Details</h3>
+        <br>
+        <table class="table table-condensed text-black">
+            <tr>
+                <th>Name:</th>
+                <td>
+                    <div *ngIf="updating!='updateName'">
+                        {{customer.name}} &nbsp;
+
+                        <a [routerLink]="" (click)="linkClick('updateName')" class="">
+                            <span data-toggle="tooltip" title="Update Name" class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                    </div>
+                
+                    <div *ngIf="updating=='updateName'">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" [(ngModel)]="sellerToUpdate.name" placeholder="Enter name..">
+                            <span class="input-group-btn">
+                                <button class="btn custom-button" (click)="updateDetail('update')">
+                                    <span data-toggle="tooltip" title="Update" class="glyphicon  glyphicon-floppy-disk glyphicon-success"></span>
+                                </button>
+                                <button class="btn custom-button" (click)="updateDetail('cancel')">
+                                    <span data-toggle="tooltip" title="Cancel" class="glyphicon glyphicon-remove-circle glyphicon-cancel"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Email Id:</th>
+                <td>
+                    {{customer.emailId}}
+                </td>
+
+            </tr>
+            <tr>
+                <th>Phone Number:</th>
+                <td>
+                    <div *ngIf="updating!='updatePhoneNumber'">
+                        {{customer.phoneNumber}} &nbsp;
+
+                        <a [routerLink]="" (click)="linkClick('updatePhoneNumber')" class="">
+                            <span data-toggle="tooltip" title="Update Phone Number" class="glyphicon glyphicon-edit"></span>
+                        </a>
+
+                    </div>
+
+                    <div *ngIf="updating=='updatePhoneNumber'">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" [(ngModel)]="sellerToUpdate.phoneNumber">
+                            <span class="input-group-btn">
+                                <button class="btn custom-button" (click)="updateDetail('update')">
+                                    <span data-toggle="tooltip" title="Update" class="glyphicon  glyphicon-floppy-disk glyphicon-success"></span>
+                                </button>
+                                <button class="btn custom-button" (click)="updateDetail('cancel')">
+                                    <span data-toggle="tooltip" title="Cancel" class="glyphicon glyphicon-remove-circle glyphicon-cancel"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+           
+
+        </table>
+
+        <div *ngIf="errorMessage!='' && successMessage!=''">
+            <div class="error-message text-center">{{errorMessage}}</div>
+            <div class="success-message text-center">{{successMessage}}</div>
+        </div>
+    </div>
+    </div>
+</div>
